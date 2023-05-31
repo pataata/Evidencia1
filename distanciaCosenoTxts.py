@@ -72,7 +72,28 @@ class TestStringMethods(TestCase):
       self.assertEqual(distanciaEntreTextos(
         ["Esta es la distancia de Coseno", "Esta otra es la distancia Euclidiana", "y esta otra es la de manhattan"], 3)[0][1],
         0.25)
+class distanciaCoseno(TestCase):
+
+    def test_unigrama(self):
+        self.assertEqual(0,
+                         distanciaEntreTextos(["Arbol verde","Cable amarillo"])[0][1])
+
+    def test_bigrama(self):
+        self.assertEqual(0.18257418583505539,
+                         distanciaEntreTextos(["Este es el texto numero uno", "Esta otro texto es el numero dos"],2)[0][1])
+
+    def test_trigrama(self):
+        self.assertEqual(0.4472135954999579,
+                         distanciaEntreTextos(["Este es el texto numero uno", "Esta otro es el texto numero dos"],3)[0][1])
+    
+    def test_resultLength(self):
+        self.assertEqual(4,
+                         len(distanciaEntreTextos(["uno","dos","tres","cuatro"])))
 
 TestStringMethods().test_stemming()
 TestStringMethods().test_ennegrams()
 TestStringMethods().test_distancia()
+distanciaCoseno().test_unigrama()
+distanciaCoseno().test_bigrama()
+distanciaCoseno().test_trigrama()
+distanciaCoseno().test_resultLength()
